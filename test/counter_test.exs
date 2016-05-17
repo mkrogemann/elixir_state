@@ -19,4 +19,9 @@ defmodule CounterTest do
     Counter.dec(context[:pid])
     assert Counter.val(context[:pid]) == -1
   end
+
+  test "stop/1 should stop the server with reason :shutdown", context do
+    true = Counter.stop(context[:pid])
+    assert !Process.alive?(context[:pid])
+  end
 end

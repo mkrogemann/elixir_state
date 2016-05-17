@@ -1,5 +1,7 @@
 defmodule Counter do
 
+  # Client API
+
   def inc(pid) do
     send(pid, :inc)
     :ok
@@ -21,6 +23,12 @@ defmodule Counter do
     pid = spawn(__MODULE__, :loop, [initial_value])
     {:ok, pid}
   end
+
+  def stop(pid) do
+    Process.exit(pid, :shutdown)
+  end
+
+  # Server
 
   def loop(value) do
     receive do
