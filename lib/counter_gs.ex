@@ -20,10 +20,10 @@ defmodule CounterGS do
   end
 
   def start_link(initial_value \\ 0) do
-    GenServer.start_link(__MODULE__, initial_value, name: :counter)
+    GenServer.start_link(__MODULE__, initial_value)
   end
 
-  # Callbacks
+  # GenServer callbacks
 
   def init(initial_value) do
     {:ok, initial_value}
